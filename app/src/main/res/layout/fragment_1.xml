@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextClock
+        android:id="@+id/idTextClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="1"
+        android:format12Hour="hh:mm:ss a" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="UserName" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="UserEmail" />
+
+    <TextView
+        android:id="@+id/gas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/idTextClock"
+        android:layout_weight="1"
+        android:text="Gas Sensor data" />
+
+    <TextView
+        android:id="@+id/flame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pir"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:layout_weight="1"
+        android:text="Flame Sensor data" />
+
+    <TextView
+        android:id="@+id/pir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/gas"
+        android:layout_marginTop="28dp"
+        android:layout_weight="1"
+        android:text="PIR Sensor data" />
+
+</LinearLayout>
