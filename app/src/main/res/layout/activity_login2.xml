@@ -55,4 +55,13 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/button_login"/>
 
+    <MultiAutoCompleteTextView
+        android:id="@+id/multiAutoCompleteTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_SignUP"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="E-MAIL" />
+
 </RelativeLayout>

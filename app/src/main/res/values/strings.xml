@@ -16,10 +16,11 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    <string name="app_nameP">My Application</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <!-- Strings related to notifications -->
+    <string name="noti_channel_default">"Fire Alert!"</string>
+    <string name="noti_channel_second">Gas Leak!</string>
+    <string name="app_nameP">Warehouse Security</string>
     <string name="left"><![CDATA[<]]></string>
     <string name="right"><![CDATA[>]]></string>
     <string name="title_activity_maps">Map</string>

@@ -1,9 +1,6 @@
 package com.group7.www.demo;
 
-/**
- * Created by prade on 31/03/18.
- */
-
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,29 +16,31 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FirstFragment extends Fragment {
-    // Store instance variables
+
     private String title;
     private int page;
+    private Context myContext;
+    private int prev;
 
-    // newInstance constructor for creating fragment with arguments
     public static FirstFragment newInstance(int page, String title) {
         FirstFragment fragmentFirst = new FirstFragment();
         Bundle args = new Bundle();
+
         args.putInt("someInt", page);
         args.putString("someTitle", title);
         fragmentFirst.setArguments(args);
         return fragmentFirst;
     }
 
-    // Store instance variables based on arguments passed
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myContext = this.getActivity();
         page = getArguments().getInt("someInt", 0);
         title = getArguments().getString("someTitle");
+        prev = -1;
     }
 
-    // Inflate the view for the fragment based on layout XML
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,11 +50,11 @@ public class FirstFragment extends Fragment {
         final TextView gas = (TextView) view.findViewById(R.id.gas);
         final TextView flame = (TextView) view.findViewById(R.id.flame);
         final TextView pir = (TextView) view.findViewById(R.id.pir);
-        //tvLabel.setText(page + " -- " + title);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
         System.out.println(uid);
+
         FirebaseDatabase.getInstance().getReference("users/ieMCfEpFLxcQOO4AnDeKAhP03Cw1")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -67,20 +66,20 @@ public class FirstFragment extends Fragment {
                         flame.setText(dataSnapshot.child("flame_sensor").getValue(String.class));
                         pir.setText(dataSnapshot.child("pir_sensor").getValue(String.class));
 
-                        if(Integer.parseInt(dataSnapshot.child("gas_sensor").getValue(String.class))>320)
+                        if(dataSnapshot.child("gas_sensor").getValue(int.class) > 320) {
+
                             System.out.println("Gas Leak!!!!!!!!!!!");
+                            Notification notification = new Notification(myContext);
+                            notification.notify1();
+                        }
                         if(Integer.parseInt(dataSnapshot.child("flame_sensor").getValue(String.class))<100)
                             System.out.println("Fire!!!!!!!!!");
-
                     }
-
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
-
         return view;
     }
-
 }

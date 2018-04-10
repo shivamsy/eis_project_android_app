@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,7 @@ public class Login extends AppCompatActivity {
 
     // Creating EditText.
     EditText email, password ;
+    MultiAutoCompleteTextView em;
 
     // Creating string to hold values.
     String EmailHolder, PasswordHolder;
@@ -44,6 +46,7 @@ public class Login extends AppCompatActivity {
         // Assign ID's to EditText.
         email = (EditText)findViewById(R.id.editText_email);
         password = (EditText)findViewById(R.id.editText_password);
+        em = (MultiAutoCompleteTextView)findViewById(R.id.multiAutoCompleteTextView);
 
         // Assign ID's to button.
         Login = (Button)findViewById(R.id.button_login);
@@ -51,7 +54,7 @@ public class Login extends AppCompatActivity {
 
         String possibleEmail="";
 
-//onCreate
+    //onCreate
 
         EditText emailEdt=new EditText(this);
 
@@ -137,10 +140,8 @@ public class Login extends AppCompatActivity {
 
         }
         else {
-
             // If any of EditText is empty then set value as true.
             EditTextEmptyCheck = true ;
-
         }
 
     }
@@ -184,7 +185,6 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 }
 

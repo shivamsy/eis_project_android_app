@@ -1,17 +1,22 @@
 package com.group7.www.demo;
 
 /**
- * Created by prade on 31/03/18.
+ * Created by shivam on 31/03/18.
  */
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 class FragmentAdapter extends FragmentPagerAdapter {
 
-    public FragmentAdapter(FragmentManager fm) {
+    private Context myContext;
+
+    public FragmentAdapter(FragmentManager fm, Context context) {
         super(fm);
+
+        myContext = context;
     }
 
     @Override
