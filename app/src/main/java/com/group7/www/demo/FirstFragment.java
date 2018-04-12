@@ -52,10 +52,10 @@ public class FirstFragment extends Fragment {
         final TextView pir = (TextView) view.findViewById(R.id.pir);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-        System.out.println(uid);
+        //String uid = user.getUid();
+        //System.out.println(uid);
 
-        FirebaseDatabase.getInstance().getReference("users/ieMCfEpFLxcQOO4AnDeKAhP03Cw1")
+        FirebaseDatabase.getInstance().getReference("users/"+user.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -66,14 +66,24 @@ public class FirstFragment extends Fragment {
                         flame.setText(dataSnapshot.child("flame_sensor").getValue(String.class));
                         pir.setText(dataSnapshot.child("pir_sensor").getValue(String.class));
 
-                        if(dataSnapshot.child("gas_sensor").getValue(int.class) > 320) {
+                        if(Integer.parseInt(dataSnapshot.child("gas_sensor").getValue(String.class)) > 320) {
 
                             System.out.println("Gas Leak!!!!!!!!!!!");
                             Notification notification = new Notification(myContext);
-                            notification.notify1();
+                            notification.notify1("gas_leak");
                         }
-                        if(Integer.parseInt(dataSnapshot.child("flame_sensor").getValue(String.class))<100)
+                        if(Integer.parseInt(dataSnapshot.child("flame_sensor").getValue(String.class))<100) {
+
                             System.out.println("Fire!!!!!!!!!");
+                            Notification notification = new Notification(myContext);
+                            notification.notify1("fire");
+                        }
+                        if(Integer.parseInt(dataSnapshot.child("pir_sensor").getValue(String.class))==1) {
+
+                            System.out.println("theft!!!!!!!!!");
+                            Notification notification = new Notification(myContext);
+                            notification.notify1("theft");
+                        }
                     }
 
                     @Override
